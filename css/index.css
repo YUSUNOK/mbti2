@@ -1,0 +1,89 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+#wrap {
+  color: #fff;
+  text-align: center;
+  font-size: 25px;
+}
+#header {
+  height: 500px;
+  background-color: #c5adce;
+}
+#content {
+  height: 1080px;
+  background-color: #c5adce;
+  margin: 0 auto;
+}
+#footer {
+  height: 100px;
+  background-color: #c5adce;
+}
+.container {
+  margin: 0 auto;
+  background-color: #c5adce;
+  height: 1080px;
+  width: 1080px;
+}
+
+.hidden {
+  display: none;
+}
+
+#image-container {
+  background-image: url("../img/select.jpg");
+  height: 900px;
+  position: relative;
+}
+#text-container {
+  height: 180px;
+  background-color: beige;
+  margin: 0 auto;
+  position: relative;
+}
+#left-item {
+  width: 300px;
+  height: 300px;
+  position: absolute;
+  bottom: 10%;
+  left: 15%;
+  background-color: #c5adce;
+  line-height: 300px;
+}
+
+#right-item {
+  width: 300px;
+  height: 300px;
+  position: absolute;
+  bottom: 10%;
+  right: 15%;
+  background-color: #c5adce;
+  line-height: 300px;
+}
+#before {
+  width: 300px;
+  height: 180px;
+  background-color: #c16a91;
+  float: left;
+  line-height: 180px;
+}
+#page {
+  width: 480px;
+  height: 180px;
+  background-color: #b691f8;
+  float: left;
+  line-height: 180px;
+}
+#after {
+  width: 300px;
+  height: 180px;
+  background-color: #c16a91;
+  float: left;
+  line-height: 180px;
+}
+
+/* <div id="before"></div>
+            <div id="page"></div>
+            <div id="after"></div> */
