@@ -1,6 +1,14 @@
+@font-face {
+  font-family: "BMDOHYEON";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_one@1.0/BMDOHYEON.woff")
+    format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
 * {
   margin: 0;
   padding: 0;
+  font-family: "BMDOHYEON";
 }
 
 #wrap {
@@ -32,58 +40,113 @@
   display: none;
 }
 
-#image-container {
+#image-container1 {
+  background-image: url("../img/start.jpg");
+  /* 900 or 1080 */
+  height: 1080px;
+  position: relative;
+}
+
+#image-container2 {
   background-image: url("../img/select.jpg");
+  /* 900 or 1080 */
   height: 900px;
   position: relative;
 }
+
+#replay-btn {
+  position: absolute;
+  bottom: 10%;
+  left: 25%;
+  height: 69px;
+  line-height: 69px;
+  width: 500px;
+  font-size: 30px;
+}
+
 #text-container {
-  height: 180px;
+  height: 130px;
   background-color: beige;
   margin: 0 auto;
   position: relative;
 }
-#left-item {
-  width: 300px;
-  height: 300px;
-  position: absolute;
-  bottom: 10%;
-  left: 15%;
+#br {
+  height: 50px;
   background-color: #c5adce;
-  line-height: 300px;
+}
+#left-item {
+  width: 235px;
+  height: 240px;
+  position: absolute;
+  bottom: 2%;
+  left: 19.5%;
+  /* background-color: #c5adce; */
+  line-height: 50px;
+  word-break: break-all;
+  overflow: hiddlen;
 }
 
 #right-item {
-  width: 300px;
-  height: 300px;
+  width: 235px;
+  height: 240px;
   position: absolute;
-  bottom: 10%;
-  right: 15%;
-  background-color: #c5adce;
-  line-height: 300px;
+  bottom: 2%;
+  right: 18%;
+  /* background-color: #c5adce; */
+  line-height: 50px;
+  word-break: break-all;
+  overflow: hiddlen;
 }
 #before {
   width: 300px;
-  height: 180px;
-  background-color: #c16a91;
+  height: 80px;
+  background-color: #decfe4;
   float: left;
-  line-height: 180px;
+  line-height: 80px;
 }
 #page {
+  /* 480 or 240 */
   width: 480px;
-  height: 180px;
-  background-color: #b691f8;
+  height: 80px;
+  background-color: #d8c7df;
   float: left;
-  line-height: 180px;
+  line-height: 80px;
+}
+
+#result-btn {
+  width: 240px;
+  height: 80px;
+  background-color: #d8c7df;
+  float: left;
+  line-height: 80px;
 }
 #after {
   width: 300px;
-  height: 180px;
-  background-color: #c16a91;
+  height: 80px;
+  background-color: #decfe4;
   float: left;
-  line-height: 180px;
+  line-height: 80px;
 }
 
-/* <div id="before"></div>
-            <div id="page"></div>
-            <div id="after"></div> */
+#mbti-info {
+  position: absolute;
+  width: 450px;
+  height: 200px;
+  line-height: 50px;
+  bottom: 33%;
+  left: 29%;
+  color: #2b035b;
+  font-size: 30px;
+}
+#mbti-result {
+  position: absolute;
+  width: 400px;
+  height: 90px;
+  line-height: 90px;
+
+  bottom: 22%;
+  left: 34%;
+  font-size: 40px;
+  font-weight: bold;
+  color: #2b035b;
+}
