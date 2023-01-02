@@ -10,7 +10,7 @@
   padding: 0;
   font-family: "BMDOHYEON";
 }
-body{
+body {
   background-color: #c5adce;
 }
 
@@ -83,10 +83,10 @@ body{
   position: absolute;
   bottom: 2%;
   left: 19.5%;
-  /* background-color: #c5adce; */
+  border-width: 2px;
   line-height: 50px;
   word-break: break-all;
-  overflow: hiddlen;
+  overflow: hidden;
 }
 
 #right-item {
@@ -95,10 +95,10 @@ body{
   position: absolute;
   bottom: 2%;
   right: 18%;
-  /* background-color: #c5adce; */
+
   line-height: 50px;
   word-break: break-all;
-  overflow: hiddlen;
+  overflow: hidden;
 }
 #before {
   width: 300px;
@@ -152,4 +152,9 @@ body{
   font-size: 40px;
   font-weight: bold;
   color: #2b035b;
+}
+
+.check {
+  font-weight: bold;
+  text-shadow: -1px 0 #ffbf00, 0 1px #ffbf00, 1px 0 #ffbf00, 0 -1px #ffbf00;
 }
