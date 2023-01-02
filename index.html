@@ -12,25 +12,30 @@
       <div id="header"></div>
       <div id="content">
         <div class="container">
+          <!-- image-container1 : 시작 이미지 보여줄 때 사용될 container -->
           <div id="image-container1"></div>
 
+          <!--  /* image-container2 : 양자 택일 시, 사용될 container */ -->
           <div class="hidden" id="image-container2">
-            <div id="left-item">left-item</div>
-            <div id="right-item">right-item</div>
+            <div id="left-item" value="-1">left-item</div>
+            <div id="right-item" value="1">right-item</div>
           </div>
 
-          <div class="hidden" id="image-container3">
-            <div id="mbti-info">mbti 설명 div</div>
-            <div id="mbti-result">mbti 결과 div</div>
-            <div id="replay-btn">다시하기</div>
-          </div>
-
+          <!-- /* text-container : 양자 택일 시, container2와 사용되는 paging 및
+          container3 유도 기능*/ -->
           <div class="hidden" id="text-container">
             <div id="br"></div>
             <div id="before">이전</div>
             <div id="page">page</div>
             <div id="result-btn" class="hidden">결과보기✨</div>
             <div id="after">다음</div>
+          </div>
+
+          <!-- /* image-container3 : 결과 보여줄 때, 사용될 container */ -->
+          <div class="hidden" id="image-container3">
+            <div id="mbti-info">mbti 설명 div</div>
+            <div id="mbti-result">mbti 결과 div</div>
+            <div id="replay-btn">다시하기</div>
           </div>
         </div>
       </div>
@@ -40,6 +45,7 @@
         <p>Copyright ⓒ 2022 sunokryu319 All Rights Reserved.</p>
       </div>
     </div>
-    <script src="js/apps.js"></script>
+
+    <script type="module" src="js/apps.js"></script>
   </body>
 </html>
