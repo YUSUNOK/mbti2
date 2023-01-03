@@ -57,6 +57,13 @@ body {
   position: relative;
 }
 
+#image-container3 {
+  background-image: url("../img/result/1.jpg");
+  /* 900 or 1080 */
+  height: 1080px;
+  position: relative;
+}
+
 #replay-btn {
   position: absolute;
   bottom: 10%;

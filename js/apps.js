@@ -1,4 +1,4 @@
-import mbtiReulst from "./mbtiResult.js";
+import mbtiResult from "./mbtiResult.js";
 import question from "./question.js";
 
 const imageContainer1 = document.querySelector("#image-container1");
@@ -9,12 +9,30 @@ const leftItem = document.querySelector("#left-item");
 const rightItem = document.querySelector("#right-item");
 const page = document.querySelector("#page");
 const before = document.querySelector("#before");
+const resultBtn = document.querySelector("#result-btn");
+const replayBtn = document.querySelector("#replay-btn");
+const mbtiInfo = document.querySelector("#mbti-info");
+const mbtiResultForm = document.querySelector("#mbti-result");
 const HIDDEN_KEY = "hidden";
 const VALUE_KEY = "value";
 const CHECK_KEY = "check";
 let whatOfFour;
 let pageNumber = 1;
-let undefinedCheckArr = new Array(12);
+let finalReusltMbti = ``;
+let undefinedCheckArr = [
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+  null,
+];
 let finalResult = [0, 0, 0, 0];
 // orderIndex = [] 0~11 순서대로
 let orderIndex = [];
@@ -64,44 +82,176 @@ imageContainer1.addEventListener("click", onStart);
 
 // 카드 선택할 때 ->
 function Click() {
-  this.classList.add(CHECK_KEY);
+  console.log(pageNumber, `pageNumber`);
   if (this.getAttribute(VALUE_KEY) == 1) {
     // 오른쪽 선택
-    leftItem.classList.remove(CHECK_KEY);
-    finalResult[whatOfFour] += 1;
-    setTimeout(function () {
-      printQuestion(++pageNumber);
-      rightItem.classList.remove(CHECK_KEY);
-    }, 1000);
-  } else {
-    // 왼쪽 선택
-    rightItem.classList.remove(CHECK_KEY);
-    finalResult[whatOfFour] -= 1;
+    undefinedCheckArr[pageNumber - 1] = 1;
+
+    if (leftItem.classList.contains(CHECK_KEY)) {
+      finalResult[whatOfFour] += 2;
+      leftItem.classList.remove(CHECK_KEY);
+    } else {
+      finalResult[whatOfFour] += 1;
+    }
+    rightItem.classList.add(CHECK_KEY);
+
+    if (undefinedCheckArr.includes(null) === false) {
+      resultBtn.classList.remove(HIDDEN_KEY);
+      page.style.width = "240px";
+    }
 
     setTimeout(function () {
-      printQuestion(++pageNumber);
-      leftItem.classList.remove(CHECK_KEY);
-    }, 1000);
+      if (pageNumber !== 12) {
+        pageNumber++;
+      }
+      printQuestion(pageNumber);
+
+      showPage();
+      if (undefinedCheckArr[pageNumber - 1] !== null) {
+        if (undefinedCheckArr[pageNumber - 1] == 1) {
+          rightItem.classList.add(CHECK_KEY);
+          leftItem.classList.remove(CHECK_KEY);
+        } else {
+          rightItem.classList.remove(CHECK_KEY);
+          leftItem.classList.add(CHECK_KEY);
+        }
+      } else {
+        rightItem.classList.remove(CHECK_KEY);
+        leftItem.classList.remove(CHECK_KEY);
+      }
+    }, 200);
+  } else {
+    // 왼쪽 선택
+    undefinedCheckArr[pageNumber - 1] = -1;
+
+    if (rightItem.classList.contains(CHECK_KEY)) {
+      finalResult[whatOfFour] -= 2;
+      rightItem.classList.remove(CHECK_KEY);
+    } else {
+      finalResult[whatOfFour] -= 1;
+    }
+    leftItem.classList.add(CHECK_KEY);
+
+    if (undefinedCheckArr.includes(null) === false) {
+      resultBtn.classList.remove(HIDDEN_KEY);
+      page.style.width = "240px";
+    }
+    setTimeout(function () {
+      if (pageNumber !== 12) {
+        pageNumber++;
+      }
+      printQuestion(pageNumber);
+      leftItem.classList.add(CHECK_KEY);
+      showPage();
+      if (undefinedCheckArr[pageNumber - 1] !== null) {
+        if (undefinedCheckArr[pageNumber - 1] == 1) {
+          rightItem.classList.add(CHECK_KEY);
+          leftItem.classList.remove(CHECK_KEY);
+        } else {
+          rightItem.classList.remove(CHECK_KEY);
+          leftItem.classList.add(CHECK_KEY);
+        }
+      } else {
+        rightItem.classList.remove(CHECK_KEY);
+        leftItem.classList.remove(CHECK_KEY);
+      }
+    }, 200);
   }
+  console.log(undefinedCheckArr);
   console.log(finalResult);
 }
+
 leftItem.addEventListener("click", Click);
 rightItem.addEventListener("click", Click);
 
-function pagingMinus() {
-  if (pageNumber === 1) {
-  } else {
-    pageNumber--;
-  }
-  page.innerText = `${pageNumber}/12`;
-}
+function paging(evt) {
+  console.log(pageNumber, `pageNumber`);
+  console.log(undefinedCheckArr);
+  evt.target.classList.add(CHECK_KEY);
+  setTimeout(function () {
+    evt.target.classList.remove(CHECK_KEY);
+  }, 200);
 
-function pagingPlus() {
-  if (pageNumber === 12) {
+  if (this.id === "before") {
+    if (pageNumber === 1) {
+    } else {
+      pageNumber--;
+      printQuestion(pageNumber);
+      if (undefinedCheckArr[pageNumber - 1] === -1) {
+        leftItem.classList.add(CHECK_KEY);
+        rightItem.classList.remove(CHECK_KEY);
+      } else if (undefinedCheckArr[pageNumber - 1] === 1) {
+        leftItem.classList.remove(CHECK_KEY);
+        rightItem.classList.add(CHECK_KEY);
+      } else if (undefinedCheckArr[pageNumber - 1] === null) {
+        leftItem.classList.remove(CHECK_KEY);
+        rightItem.classList.remove(CHECK_KEY);
+      }
+    }
+    page.innerText = `${pageNumber}/12`;
   } else {
-    pageNumber++;
+    if (pageNumber === 12) {
+    } else {
+      pageNumber++;
+      printQuestion(pageNumber);
+      if (undefinedCheckArr[pageNumber - 1] === -1) {
+        leftItem.classList.add(CHECK_KEY);
+        rightItem.classList.remove(CHECK_KEY);
+      } else if (undefinedCheckArr[pageNumber - 1] === 1) {
+        leftItem.classList.remove(CHECK_KEY);
+        rightItem.classList.add(CHECK_KEY);
+      } else if (undefinedCheckArr[pageNumber - 1] === null) {
+        leftItem.classList.remove(CHECK_KEY);
+        rightItem.classList.remove(CHECK_KEY);
+      }
+    }
+    page.innerText = `${pageNumber}/12`;
   }
-  page.innerText = `${pageNumber}/12`;
 }
-before.addEventListener("click", pagingMinus);
-after.addEventListener("click", pagingPlus);
+before.addEventListener("click", paging);
+after.addEventListener("click", paging);
+
+function printResult() {
+  imageContainer2.classList.add(HIDDEN_KEY);
+  textContainer.classList.add(HIDDEN_KEY);
+  imageContainer3.classList.remove(HIDDEN_KEY);
+  const randomNumber = Math.floor(Math.random() * 4) + 1;
+  imageContainer3.style.backgroundImage = `url("../img/result/${randomNumber}.jpg")`;
+
+  if (finalResult[0] < 0) {
+    finalReusltMbti += "E";
+  } else {
+    finalReusltMbti += "I";
+  }
+
+  if (finalResult[1] < 0) {
+    finalReusltMbti += "S";
+  } else {
+    finalReusltMbti += "N";
+  }
+
+  if (finalResult[2] < 0) {
+    finalReusltMbti += "T";
+  } else {
+    finalReusltMbti += "F";
+  }
+
+  if (finalResult[3] < 0) {
+    finalReusltMbti += "P";
+  } else {
+    finalReusltMbti += "J";
+  }
+
+  console.log(finalReusltMbti);
+
+  mbtiResult.forEach((item) => {
+    if (item[1] === finalReusltMbti) {
+      mbtiInfo.innerText = item[0];
+      mbtiResultForm.innerText = item[1];
+    }
+  });
+}
+resultBtn.addEventListener("click", printResult);
+replayBtn.addEventListener("click", function () {
+  location.reload();
+});
